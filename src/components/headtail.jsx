@@ -6,8 +6,6 @@ function Main() {
   const [value, setValue] = useState("default");
   const [selectedValue, setSelectedValue] = useState("default");
   const [values, setValues] = useState([]);
-  const [row, setRow] = useState(0);
-  const [column, setColumn] = useState(0);
   const optionArray = [
     { id: 1, value: "Select value" },
     { id: 2, value: "H" },
@@ -40,8 +38,8 @@ function Main() {
       setValues([
         ...values,
         {
-          row: lastValue.row + 20,
-          column: lastValue.column,
+          column: lastValue.column + 20,
+          row: lastValue.row,
           value: selectedValue,
         },
       ]);
@@ -49,8 +47,8 @@ function Main() {
       setValues([
         ...values,
         {
-          row: 0,
-          column: empty ? 0 : lastValue.column + 20,
+          column: 0,
+          row: empty ? 0 : lastValue.row + 20,
           value: selectedValue,
         },
       ]);
@@ -86,8 +84,8 @@ function Main() {
                   key={i}
                   style={{
                     position: "absolute",
-                    top: `${m.row}px`,
-                    left: `${m.column}px`,
+                    top: `${m.column}px`,
+                    left: `${m.row}px`,
                   }}
                 >
                   {m.value}
